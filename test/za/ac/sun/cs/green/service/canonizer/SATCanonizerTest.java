@@ -220,7 +220,7 @@ public class SATCanonizerTest {
 		Operation o1 = new Operation(Operation.Operator.ADD, c1, c2);
 		Operation o2 = new Operation(Operation.Operator.MUL, o1, v1);
 		Operation o3 = new Operation(Operation.Operator.LT, o2, v2);
-		check(o3, "((2+3)*aa)<bb", "5*v+-1*v+1<=0");
+		check(o3, "((2+3)*aa)<bb", "5*v+-1*v-1<=0");
 	}
 
 	@Test
@@ -254,7 +254,7 @@ public class SATCanonizerTest {
 		Operation o1 = new Operation(Operation.Operator.SUB, v1, v2);
 		Operation o2 = new Operation(Operation.Operator.MUL, c1, o1);
 		Operation o3 = new Operation(Operation.Operator.LT, o2, v1);
-		check(o3, "(2*(aa-bb))<aa", "1*v+-2*v+1<=0");
+		check(o3, "(2*(aa-bb))<aa", "1*v+-2*v+1<0");
 	}
 
 	@Test
@@ -284,7 +284,7 @@ public class SATCanonizerTest {
 		Operation o1 = new Operation(Operation.Operator.LT, c1, c1);
 		Operation o2 = new Operation(Operation.Operator.LT, v1, c1);
 		Operation o3 = new Operation(Operation.Operator.AND, o1, o2);
-		check(o3, "(2<2)&&(aa<2)", "0==1");
+		check(o3, "(2<2)&&(aa<2)", "0>=1");
 	}
 
 	@Test
